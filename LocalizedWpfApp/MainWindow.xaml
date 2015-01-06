@@ -1,0 +1,40 @@
+﻿<Window x:Class="LocalizedWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:localizedWpfApp="clr-namespace:LocalizedWpfApp"
+        
+        
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:properties="clr-namespace:LocalizedWpfApp.Properties"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance Type=localizedWpfApp:TheDataContext}"
+
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <localizedWpfApp:TheDataContext x:Key="TheDataContext"/>
+    </Window.Resources>
+    <StackPanel DataContext="{StaticResource TheDataContext}">
+        
+        <Button Content="{x:Static properties:Resources.MainWindow_SwitchToJpButtonLabel}" Command="{x:Static localizedWpfApp:Commands.SwitchToJpCommand}"/>
+        <Button Content="{x:Static properties:Resources.MainWindow_SwitchToEnButtonLabel}" Command="{x:Static localizedWpfApp:Commands.SwitchToEnCommand}"/>
+        
+        <!--This is a text block with a localized text-->
+        <!--Notice that the Resource name starts with MainWindow. That way, we know the context of the text.-->
+        <TextBlock Text="{x:Static properties:Resources.MainWindow_XamlTextLabel}"/>
+        
+        <!--Bound texts are translated dynamically in code-->
+        <TextBlock Text="{Binding NumberText}"/>
+        <TextBlock Text="{Binding CurrencyText}"/>
+        
+        <!--The items' texts are defined dynamically through C# code-->
+        <ListBox ItemsSource="{Binding ManyItemsCollection}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Window>
