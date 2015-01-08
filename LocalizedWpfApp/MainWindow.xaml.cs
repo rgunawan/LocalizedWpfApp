@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 
 namespace LocalizedWpfApp
@@ -26,6 +28,8 @@ namespace LocalizedWpfApp
         public string NumberText { get; private set; }
         public string CurrencyText { get; private set; }
 
+        public ObservableCollection<CultureInfo> Cultures { get; private set; }
+
         public TheDataContext()
         {
             ManyItemsCollection = new ObservableCollection<string>();
@@ -46,6 +50,9 @@ namespace LocalizedWpfApp
             ManyItemsCollection.Add(templatePlural.Fill(Properties.Resources.TheDataContext_FirstSmall, count));
             ManyItemsCollection.Add(templatePlural.Fill(Properties.Resources.TheDataContext_SecondSmall, count));
             ManyItemsCollection.Add(templatePlural.Fill(Properties.Resources.TheDataContext_ThirdSmall, count));
+
+            // Cultures
+            Cultures = new ObservableCollection<CultureInfo>(CultureInfo.GetCultures(CultureTypes.AllCultures).Where(cul => cul.Name.Length == 2));
         }
     }
 }

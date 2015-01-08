@@ -8,6 +8,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:properties="clr-namespace:LocalizedWpfApp.Properties"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance Type=localizedWpfApp:TheDataContext}"
 
@@ -36,5 +37,14 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListBox>
+
+        <ScrollViewer>
+            <DataGrid ItemsSource="{Binding Cultures}" IsReadOnly="True" Height="300" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="NativeName" Binding="{Binding NativeName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </StackPanel>
 </Window>
