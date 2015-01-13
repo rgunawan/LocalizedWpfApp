@@ -26,8 +26,10 @@
         <TextBlock Text="{x:Static properties:Resources.MainWindow_XamlTextLabel}"/>
         
         <!--Bound texts are translated dynamically in code-->
-        <TextBlock Text="{Binding NumberText}"/>
-        <TextBlock Text="{Binding CurrencyText}"/>
+        <TextBlock><Run Text="NumberNoCultureText="/><Run Text="{Binding NumberNoCultureText}"/></TextBlock>
+        <TextBlock><Run Text="NumberGeneralText="/><Run Text="{Binding NumberGeneralText}"/></TextBlock>
+        <TextBlock><Run Text="NumberText="/><Run Text="{Binding NumberText}"/></TextBlock>
+        <TextBlock><Run Text="CurrencyText="/><Run Text="{Binding CurrencyText}"/></TextBlock>
         
         <!--The items' texts are defined dynamically through C# code-->
         <ListBox ItemsSource="{Binding ManyItemsCollection}">
